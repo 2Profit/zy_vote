@@ -9,7 +9,7 @@ import com.zy.common.entity.BaseEntity;
 import com.zy.member.entity.Member;
 
 /**
- * Ìû×Ó¾Ù±¨±í
+ * å¸–å­ä¸¾æŠ¥è¡¨
  * @author Jeff Xu
  *
  */

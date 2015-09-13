@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import com.zy.common.entity.BaseEntity;
 import com.zy.member.entity.Member;
 /**
- * Í¶Æ±Ö÷ÌâÌû×Ó
+ * æŠ•ç¥¨ä¸»é¢˜å¸–å­
  * @author Jeff Xu
  *
  */
@@ -20,7 +20,7 @@ public class VoteTopicPost extends BaseEntity{
 
 	private VoteTopic voteTopic;
 	
-	//·¢ÌûÈË
+	//å‘å¸–äºº
 	private Member publisher;
 
 	@ManyToOne

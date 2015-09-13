@@ -9,7 +9,7 @@ import com.zy.common.entity.BaseEntity;
 import com.zy.member.entity.Member;
 
 /**
- * 用户投票日志
+ * 鐢ㄦ埛鎶曠エ鏃ュ織
  * @author Jeff Xu
  *
  */

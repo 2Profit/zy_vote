@@ -1,5 +1,6 @@
 package com.zy.vote.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -9,7 +10,7 @@ import com.zy.common.entity.BaseEntity;
 import com.zy.member.entity.Member;
 
 /**
- * Í¶Æ±Ö÷ÌâÌû×Ó»Ø¸´
+ * æŠ•ç¥¨ä¸»é¢˜å¸–å­å›å¤
  * @author Jeff Xu
  *
  */
@@ -23,8 +24,9 @@ public class VoteTopicPostReplay extends BaseEntity{
     
     private VoteTopicPost voteTopicPost;
 	
-	//»Ø¸´ÈË
+	//å›å¤äºº
 	private Member replayer;
+	private String replayContent;//å›å¤å†…å®¹
 
 	@ManyToOne
 	@JoinColumn(name="vote_topic_id")
@@ -55,5 +57,16 @@ public class VoteTopicPostReplay extends BaseEntity{
 	public void setReplayer(Member replayer) {
 		this.replayer = replayer;
 	}
+
+	@Column(length=512)
+	public String getReplayContent() {
+		return replayContent;
+	}
+
+	public void setReplayContent(String replayContent) {
+		this.replayContent = replayContent;
+	}
+	
+	
 	
 }
