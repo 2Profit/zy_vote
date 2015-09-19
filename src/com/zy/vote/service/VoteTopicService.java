@@ -52,12 +52,23 @@ public class VoteTopicService extends CommonService<VoteTopic,String>{
 	public void updateTopicAndOptions(VoteTopic dto){
 		if(dto.getOptionContent()==null || dto.getOptionContent().length<1)
 			throw new RuntimeException("选项内容空");
-		voteTopicDao.save(dto);
+		VoteTopic entity = voteTopicDao.save(dto);
 		List<VoteTopicOption> options = voteTopicOptionService.getOptionByVoteTopic(dto.getId());
 		for(int i=0; i<options.size(); i++){
 			VoteTopicOption option = options.get(i);
 			option.setOptionContent(dto.getOptionContent()[i]);
+			option.setCreateName(dto.getCreateName());
 			voteTopicOptionService.update(option);
+		}
+		//编辑的时候新增了选项
+		if(dto.getOptionContent().length>options.size()){
+			for(int i=options.size(); i<dto.getOptionContent().length; i++){
+				VoteTopicOption option = new VoteTopicOption();
+				option.setOptionContent(dto.getOptionContent()[i]);
+				option.setVoteTopic(entity);
+				option.setCreateName(dto.getCreateName());
+				voteTopicOptionService.save(option);
+			}
 		}
 	}
 }

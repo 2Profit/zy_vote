@@ -14,14 +14,20 @@ public class VoteTopicDto extends PageModel<VoteTopic>{
 	private String id;//主键
 	private String optionId;//主题投票选项
 	private Date startDate;//开始日期
-	private int lastDays;//投票持续天数
 	private String titleContent;//题目内容
-	private String isDisplay;//是否开启显示功能（1-开启，0-关闭）
-	private String displayPosition;//显示位置（0-主，1-副）
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Boolean isComment;//是否开启评论功能（1-开启，0-关闭）
+	private String displayPosition;//显示位置（0-用户中心，1-网页，2-用户中心+网页）
+	private String displayType;//显示模式(0-百分比，1-实数)
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date startDateBegin;//查询时间（开始）
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date startDateEnd;//查询时间（结束）
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date toDateBegin;//查询时间（开始）
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date toDateEnd;//查询时间（结束）
+	
+	private String[] ids;
 	
 	public String getId() {
 		return id;
@@ -41,23 +47,11 @@ public class VoteTopicDto extends PageModel<VoteTopic>{
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public int getLastDays() {
-		return lastDays;
-	}
-	public void setLastDays(int lastDays) {
-		this.lastDays = lastDays;
-	}
 	public String getTitleContent() {
 		return titleContent;
 	}
 	public void setTitleContent(String titleContent) {
 		this.titleContent = titleContent;
-	}
-	public String getIsDisplay() {
-		return isDisplay;
-	}
-	public void setIsDisplay(String isDisplay) {
-		this.isDisplay = isDisplay;
 	}
 	public String getDisplayPosition() {
 		return displayPosition;
@@ -76,6 +70,36 @@ public class VoteTopicDto extends PageModel<VoteTopic>{
 	}
 	public void setStartDateEnd(Date startDateEnd) {
 		this.startDateEnd = startDateEnd;
+	}
+	public Boolean getIsComment() {
+		return isComment;
+	}
+	public void setIsComment(Boolean isComment) {
+		this.isComment = isComment;
+	}
+	public Date getToDateBegin() {
+		return toDateBegin;
+	}
+	public void setToDateBegin(Date toDateBegin) {
+		this.toDateBegin = toDateBegin;
+	}
+	public Date getToDateEnd() {
+		return toDateEnd;
+	}
+	public void setToDateEnd(Date toDateEnd) {
+		this.toDateEnd = toDateEnd;
+	}
+	public String getDisplayType() {
+		return displayType;
+	}
+	public void setDisplayType(String displayType) {
+		this.displayType = displayType;
+	}
+	public String[] getIds() {
+		return ids;
+	}
+	public void setIds(String[] ids) {
+		this.ids = ids;
 	}
 	
 	

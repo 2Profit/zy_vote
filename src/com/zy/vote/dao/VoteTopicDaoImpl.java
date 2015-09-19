@@ -32,9 +32,13 @@ public class VoteTopicDaoImpl extends CustomBaseSqlDaoImpl implements VoteTopicC
 			hql.append(" and l.displayPosition = :displayPosition ");
 			params.put("displayPosition", queryDto.getDisplayPosition());
 		}
-		if(StringUtils.isNotBlank(queryDto.getIsDisplay())){
-			hql.append(" and l.isDisplay = :isDisplay ");
-			params.put("isDisplay", queryDto.getIsDisplay());
+		if(StringUtils.isNotBlank(queryDto.getDisplayType())){
+			hql.append(" and l.displayType = :displayType ");
+			params.put("displayType", queryDto.getDisplayType());
+		}
+		if(queryDto.getIsComment()!=null){
+			hql.append(" and l.isComment = :isComment ");
+			params.put("isComment", queryDto.getIsComment());
 		}
 		if(queryDto.getStartDateBegin()!=null){
 			hql.append(" and l.startDate >= :startDateBegin ");
@@ -43,6 +47,14 @@ public class VoteTopicDaoImpl extends CustomBaseSqlDaoImpl implements VoteTopicC
 		if(queryDto.getStartDateEnd()!=null){
 			hql.append(" and l.startDate <= :startDateEnd ");
 			params.put("startDateEnd", queryDto.getStartDateEnd());
+		}
+		if(queryDto.getToDateBegin()!=null){
+			hql.append(" and l.startDate >= :startDateBegin ");
+			params.put("startDateBegin", queryDto.getToDateBegin());
+		}
+		if(queryDto.getToDateEnd()!=null){
+			hql.append(" and l.endDate <= :toDateEnd ");
+			params.put("toDateEnd", queryDto.getToDateEnd());
 		}
 		
 		hql.append(" order by l.updateDate desc ");

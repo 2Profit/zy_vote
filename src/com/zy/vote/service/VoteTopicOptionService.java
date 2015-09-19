@@ -23,4 +23,5 @@ public class VoteTopicOptionService extends CommonService<VoteTopicOption,String
 	public List<VoteTopicOption> getOptionByVoteTopic(String voteTopicId){
 		return voteTopicOptionDao.getOptionByVoteTopic(voteTopicId);
 	}
+	
 }

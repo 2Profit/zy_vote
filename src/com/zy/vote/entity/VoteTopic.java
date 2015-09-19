@@ -25,12 +25,14 @@ public class VoteTopic extends BaseEntity{
 	private static final long serialVersionUID = -99057880624174607L;
 
 	private List<VoteTopicOption> options;//主题投票选项
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date startDate;//开始日期
-	private int lastDays;//投票持续天数
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date endDate;//结束日期
 	private String titleContent;//题目内容
-	private String isDisplay;//是否开启显示功能（1-开启，0-关闭）
-	private String displayPosition;//显示位置（1-主，0-副）
+	private Boolean isComment;//是否开启评论功能（1-开启，0-关闭）
+	private String displayPosition;//显示位置（0-用户中心，1-网页，2-用户中心+网页）
+	private String displayType;//显示模式(0-百分比，1-实数)
 	private Integer praiseCount;//点赞总数
 	private Integer reportCount;//举报总数
 	
@@ -50,11 +52,11 @@ public class VoteTopic extends BaseEntity{
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public int getLastDays() {
-		return lastDays;
+	public Date getEndDate() {
+		return endDate;
 	}
-	public void setLastDays(int lastDays) {
-		this.lastDays = lastDays;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 	@Column(length=128)
 	public String getTitleContent() {
@@ -64,15 +66,21 @@ public class VoteTopic extends BaseEntity{
 		this.titleContent = titleContent;
 	}
 	@Column(length=2)
-	public String getIsDisplay() {
-		return isDisplay;
+	public String getDisplayType() {
+		return displayType;
 	}
-	public void setIsDisplay(String isDisplay) {
-		this.isDisplay = isDisplay;
+	public void setDisplayType(String displayType) {
+		this.displayType = displayType;
 	}
 	@Column(length=2)
 	public String getDisplayPosition() {
 		return displayPosition;
+	}
+	public Boolean getIsComment() {
+		return isComment;
+	}
+	public void setIsComment(Boolean isComment) {
+		this.isComment = isComment;
 	}
 	public void setDisplayPosition(String displayPosition) {
 		this.displayPosition = displayPosition;

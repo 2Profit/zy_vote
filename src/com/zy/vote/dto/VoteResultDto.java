@@ -21,6 +21,7 @@ public class VoteResultDto {
 	
 	private String option4;//选项4
 	private int option4Count;//选项4投票数
+	
 	public String getOption1() {
 		return option1;
 	}
