@@ -41,6 +41,7 @@ public class VoteTopicService extends CommonService<VoteTopic,String>{
 			VoteTopicOption option = new VoteTopicOption();
 			option.setVoteTopic(entity);
 			option.setOptionContent(optionContent);
+			option.setCreateName(dto.getCreateName());
 			voteTopicOptionService.save(option);
 		}
 	}
