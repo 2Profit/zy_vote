@@ -21,7 +21,7 @@ public class VoteTopicOption extends BaseEntity{
 
 	private VoteTopic voteTopic;
 	private String optionContent;//选项内容
-	private Integer voteCount;//选项被投票累计次数
+	private Integer voteCount = 0;//选项被投票累计次数(默认0)
 
 	
 	//以下数据用于页面传值

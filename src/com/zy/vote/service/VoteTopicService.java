@@ -29,6 +29,14 @@ public class VoteTopicService extends CommonService<VoteTopic,String>{
 		return voteTopicDao.queryForPage(queryDto);
 	}
 	
+	public List<VoteTopic> getTopicBySchedule(String schedule){
+		return voteTopicDao.getTopicBySchedule(schedule);
+	}
+	
+	public void updateDeleteFlag(String[] ids,Integer isDelete){
+		voteTopicDao.updateDeleteFlag(ids, isDelete);
+	}
+	
 	/**
 	 * 新增投票主题、投票选项
 	 * @param dto

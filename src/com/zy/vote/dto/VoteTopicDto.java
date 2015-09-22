@@ -28,6 +28,7 @@ public class VoteTopicDto extends PageModel<VoteTopic>{
 	private Date toDateEnd;//查询时间（结束）
 	
 	private String[] ids;
+	private Integer deleteFlag;
 	
 	public String getId() {
 		return id;
@@ -100,6 +101,12 @@ public class VoteTopicDto extends PageModel<VoteTopic>{
 	}
 	public void setIds(String[] ids) {
 		this.ids = ids;
+	}
+	public Integer getDeleteFlag() {
+		return deleteFlag;
+	}
+	public void setDeleteFlag(Integer deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
 	
 	

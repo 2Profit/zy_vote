@@ -1,9 +1,12 @@
 package com.zy.vote.dao;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.zy.common.dao.CustomBaseSqlDaoImpl;
 import com.zy.common.entity.PageModel;
@@ -12,6 +15,9 @@ import com.zy.vote.entity.VoteTopic;
 
 public class VoteTopicDaoImpl extends CustomBaseSqlDaoImpl implements VoteTopicCustomDao{
 
+	@Autowired
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public PageModel<VoteTopic> queryForPage(VoteTopicDto queryDto) {
@@ -62,6 +68,12 @@ public class VoteTopicDaoImpl extends CustomBaseSqlDaoImpl implements VoteTopicC
 		return this.queryForPageWithParams(hql.toString(),params,queryDto.getCurrentPage(), queryDto.getPageSize());
 	}
 	
-	
+	@Override
+	public void updateDeleteFlag(String[] ids,Integer isDelete){
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("isDelete", isDelete);
+		params.put("ids", Arrays.asList(ids));
+		namedParameterJdbcTemplate.update("update vote_topic set delete_flag = :isDelete, update_date = now() where id in (:ids) ", params);
+	}
 
 }

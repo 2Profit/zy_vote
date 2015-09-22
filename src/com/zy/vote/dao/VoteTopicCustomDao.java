@@ -7,4 +7,6 @@ import com.zy.vote.entity.VoteTopic;
 public interface VoteTopicCustomDao {
 
 	PageModel<VoteTopic> queryForPage(VoteTopicDto queryDto);
+	
+	public void updateDeleteFlag(String[] ids,Integer isDelete);
 }
