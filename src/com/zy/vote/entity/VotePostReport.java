@@ -1,5 +1,6 @@
 package com.zy.vote.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,9 +20,11 @@ public class VotePostReport extends BaseEntity{
 
 	private static final long serialVersionUID = 4547815806035635158L;
 
-	private Member member;
+	private Member member;//举报人
 	
 	private VoteTopicPost voteTopicPost;
+	
+	private String ipAddress;//举报人IP地址
 
 	@ManyToOne
 	@JoinColumn(name="member_id")
@@ -42,4 +45,15 @@ public class VotePostReport extends BaseEntity{
 	public void setVoteTopicPost(VoteTopicPost voteTopicPost) {
 		this.voteTopicPost = voteTopicPost;
 	}
+
+	@Column(length=64)
+	public String getIpAddress() {
+		return ipAddress;
+	}
+
+	public void setIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
+	}
+	
+	
 }

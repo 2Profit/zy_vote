@@ -42,7 +42,7 @@ public class VoteTopic extends BaseEntity{
 	private String displayPosition;//显示位置（0-用户中心，1-网页，2-用户中心+网页）
 	private String displayType;//显示模式(0-百分比，1-实数)
 	private String schedule;//排期（0-初始值，1-当前期，2-下期）
-	private Integer voteCount;//总投票数
+	private Integer voteCount = 0;//总投票数
 	
 	private String[] optionContent;//选项内容
 	
