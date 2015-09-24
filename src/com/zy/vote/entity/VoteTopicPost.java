@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -27,6 +28,7 @@ public class VoteTopicPost extends BaseEntity{
 	private static final long serialVersionUID = 2539439941089502853L;
 
 	private VoteTopic voteTopic;
+	@OrderBy("createDate desc")
 	private List<VoteTopicPostReplay> postReplays;
 	
 	//发帖人

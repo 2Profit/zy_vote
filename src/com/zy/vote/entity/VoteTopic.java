@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -29,6 +30,7 @@ public class VoteTopic extends BaseEntity{
 	public static final String SCHEDULE_CURRENT = "1";
 	public static final String SCHEDULE_NEXT = "2";
 
+	
 	private List<VoteTopicOption> options;//主题投票选项
 	private List<VoteTopicPost> posts;//投票评论
 	
@@ -48,6 +50,7 @@ public class VoteTopic extends BaseEntity{
 	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "voteTopic")
+	@OrderBy("id")
 	public List<VoteTopicOption> getOptions() {
 		return options;
 	}
@@ -56,6 +59,7 @@ public class VoteTopic extends BaseEntity{
 	}
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "voteTopic")
+	@OrderBy("createDate desc")
 	public List<VoteTopicPost> getPosts() {
 		return posts;
 	}
