@@ -27,6 +27,8 @@ public class VoteTopicDto extends PageModel<VoteTopic>{
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date toDateEnd;//查询时间（结束）
 	
+	private String schedule;
+	
 	private String[] ids;
 	private Integer deleteFlag;
 	
@@ -107,6 +109,12 @@ public class VoteTopicDto extends PageModel<VoteTopic>{
 	}
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
+	}
+	public String getSchedule() {
+		return schedule;
+	}
+	public void setSchedule(String schedule) {
+		this.schedule = schedule;
 	}
 	
 	

@@ -17,4 +17,8 @@ public class VotePostReportService extends CommonService<VotePostReport,String>{
 	public void setVotePostReportDao(VotePostReportDao votePostReportDao) {
 		super.setCommonDao(votePostReportDao);
 	}
+	
+	public int findMemberPostReport(String memberId, String postId){
+		return votePostReportDao.findMemberPostReport(memberId, postId);
+	}
 }

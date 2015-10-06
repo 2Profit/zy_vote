@@ -1,5 +1,6 @@
 package com.zy.vote.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,23 @@ public class VoteTopicService extends CommonService<VoteTopic,String>{
 	public List<VoteTopic> getTopicBySchedule(String schedule){
 		return voteTopicDao.getTopicBySchedule(schedule);
 	}
+	
+	public List<VoteTopic> getIndexTopic(){
+		VoteTopicDto queryDto = new VoteTopicDto();
+		queryDto.setSchedule(VoteTopic.SCHEDULE_NEXT);
+		queryDto.setPageSize(3);
+		return voteTopicDao.queryForPage(queryDto).getList();
+	}
+	
+	public VoteTopic getCurrentTopic(){
+		VoteTopicDto queryDto = new VoteTopicDto();
+		queryDto.setSchedule(VoteTopic.SCHEDULE_CURRENT);
+		queryDto.setPageSize(1);
+		queryDto.setStartDateEnd(new Date());
+		queryDto.setToDateBegin(new Date());
+		return voteTopicDao.queryForPage(queryDto).getList().get(0);
+	}
+	
 	
 	public void updateDeleteFlag(String[] ids,Integer isDelete){
 		voteTopicDao.updateDeleteFlag(ids, isDelete);

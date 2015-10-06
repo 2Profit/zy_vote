@@ -25,4 +25,8 @@ public class VoteMemberLogService extends CommonService<VoteMemberLog,String>{
 		return voteMemberLogDao.queryForPage(queryDto, pageModel);
 	}
 	
+	public int findMemberTopicLog(String memberId, String topicId){
+		return voteMemberLogDao.findMemberTopicLog(memberId, topicId);
+	}
+	
 }

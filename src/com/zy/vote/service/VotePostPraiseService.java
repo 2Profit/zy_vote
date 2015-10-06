@@ -17,4 +17,8 @@ public class VotePostPraiseService extends CommonService<VotePostPraise,String>{
 	public void setVotePostPraiseDao(VotePostPraiseDao votePostPraiseDao) {
 		super.setCommonDao(votePostPraiseDao);
 	}
+	
+	public int findMemberPraise(String memberId, String postId){
+		return votePostPraiseDao.findMemberPraise(memberId, postId);
+	}
 }

@@ -27,8 +27,8 @@ public class VoteTopic extends BaseEntity{
 	private static final long serialVersionUID = -99057880624174607L;
 	
 	public static final String SCHEDULE_DEFAULT = "0";
-	public static final String SCHEDULE_CURRENT = "1";
-	public static final String SCHEDULE_NEXT = "2";
+	public static final String SCHEDULE_CURRENT = "1";//当前期
+	public static final String SCHEDULE_NEXT = "2";// 下期
 
 	
 	private List<VoteTopicOption> options;//主题投票选项
@@ -45,6 +45,9 @@ public class VoteTopic extends BaseEntity{
 	private String displayType;//显示模式(0-百分比，1-实数)
 	private String schedule;//排期（0-初始值，1-当前期，2-下期）
 	private Integer voteCount = 0;//总投票数
+	private String imageUrl; //主题图，保存相对路径
+	private Integer imageHeight;//主题图片高
+	private Integer imageWidth;//主题图片宽
 	
 	private String[] optionContent;//选项内容
 	
@@ -118,8 +121,27 @@ public class VoteTopic extends BaseEntity{
 	public void setVoteCount(Integer voteCount) {
 		this.voteCount = voteCount;
 	}
-	
-	
+	@Column(length=64)
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	@javax.persistence.Transient
+	public Integer getImageHeight() {
+		return imageHeight;
+	}
+	public void setImageHeight(Integer imageHeight) {
+		this.imageHeight = imageHeight;
+	}
+	@javax.persistence.Transient
+	public Integer getImageWidth() {
+		return imageWidth;
+	}
+	public void setImageWidth(Integer imageWidth) {
+		this.imageWidth = imageWidth;
+	}
 	@javax.persistence.Transient
 	public String[] getOptionContent() {
 		return optionContent;

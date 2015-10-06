@@ -11,4 +11,5 @@ public interface VoteTopicDao extends VoteTopicCustomDao,CommonDao<VoteTopic,Str
 
 	@Query(" from VoteTopic l where l.schedule = ?1")
 	List<VoteTopic> getTopicBySchedule(String schedule);
+	
 }
