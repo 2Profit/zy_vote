@@ -47,7 +47,11 @@ public class VoteTopicService extends CommonService<VoteTopic,String>{
 		queryDto.setPageSize(1);
 		queryDto.setStartDateEnd(new Date());
 		queryDto.setToDateBegin(new Date());
-		return voteTopicDao.queryForPage(queryDto).getList().get(0);
+		PageModel<VoteTopic> pageModel = voteTopicDao.queryForPage(queryDto);
+		if(pageModel != null && pageModel.getList() != null && !pageModel.getList().isEmpty()){
+			return pageModel.getList().get(0);
+		}
+		return null;
 	}
 	
 	
