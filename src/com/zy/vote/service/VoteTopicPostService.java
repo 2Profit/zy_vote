@@ -24,5 +24,9 @@ public class VoteTopicPostService extends CommonService<VoteTopicPost,String>{
 	public PageModel<VoteTopicPost> queryPage(VoteTopicPost queryDto,PageModel<VoteTopicPost> pageModel){
 		return voteTopicPostDao.queryForPage(queryDto, pageModel);
 	}
+	
+	public void updateDeleteFlag(String[] ids,Integer isDelete){
+		voteTopicPostDao.updateDeleteFlag(ids, isDelete);
+	}
 
 }

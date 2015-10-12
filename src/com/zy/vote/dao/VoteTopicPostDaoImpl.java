@@ -1,9 +1,12 @@
 package com.zy.vote.dao;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.zy.common.dao.CustomBaseSqlDaoImpl;
 import com.zy.common.entity.PageModel;
@@ -11,6 +14,9 @@ import com.zy.vote.entity.VoteTopicPost;
 
 public class VoteTopicPostDaoImpl extends CustomBaseSqlDaoImpl implements VoteTopicPostCustomDao{
 
+	@Autowired
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	
 	@Override
 	@SuppressWarnings("unchecked")
 	public PageModel<VoteTopicPost> queryForPage(VoteTopicPost queryDto,
@@ -31,9 +37,13 @@ public class VoteTopicPostDaoImpl extends CustomBaseSqlDaoImpl implements VoteTo
 			hql.append(" and l.postContent like :postContent ");
 			params.put("postContent", "%"+queryDto.getPostContent()+"%");
 		}
-		if(queryDto.getPublisher()!=null && StringUtils.isNotBlank(queryDto.getPublisher().getUserName())){
-			hql.append(" and l.publisher.userName like :userName ");
-			params.put("userName", "%"+queryDto.getPublisher().getUserName()+"%");
+		if(queryDto.getPublisher()!=null && StringUtils.isNotBlank(queryDto.getPublisher().getMobile())){
+			hql.append(" and l.publisher.usemobilerName like :mobile ");
+			params.put("mobile", "%"+queryDto.getPublisher().getMobile()+"%");
+		}
+		if(queryDto.getPublisher()!=null && StringUtils.isNotBlank(queryDto.getPublisher().getEmail())){
+			hql.append(" and l.publisher.email like :email ");
+			params.put("email", queryDto.getPublisher().getEmail());
 		}
 		if(queryDto.getCreateDateFrom()!=null){
 			hql.append(" and l.createDate >= :createDateFrom ");
@@ -48,5 +58,14 @@ public class VoteTopicPostDaoImpl extends CustomBaseSqlDaoImpl implements VoteTo
 		
 		return this.queryForPageWithParams(hql.toString(),params,pageModel.getCurrentPage(), pageModel.getPageSize());
 	}
+	
+	@Override
+	public void updateDeleteFlag(String[] ids,Integer isDelete){
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("isDelete", isDelete);
+		params.put("ids", Arrays.asList(ids));
+		namedParameterJdbcTemplate.update("update vote_topic_post set delete_flag = :isDelete, update_date = now() where id in (:ids) ", params);
+	}
+
 
 }

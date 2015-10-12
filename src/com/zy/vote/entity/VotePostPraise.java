@@ -1,10 +1,14 @@
 package com.zy.vote.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.zy.common.entity.BaseEntity;
 import com.zy.member.entity.Member;
@@ -25,6 +29,12 @@ public class VotePostPraise extends BaseEntity{
 	private VoteTopicPost voteTopicPost;//点赞帖子
 	
 	private String ipAddress;//点赞人IP地址
+	
+	//用于后台页面查询
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date createDateFrom;
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date createDateTo;
 
 	@ManyToOne
 	@JoinColumn(name="member_id")
@@ -55,5 +65,24 @@ public class VotePostPraise extends BaseEntity{
 		this.ipAddress = ipAddress;
 	}
 
+	@javax.persistence.Transient
+	public Date getCreateDateFrom() {
+		return createDateFrom;
+	}
+
+	public void setCreateDateFrom(Date createDateFrom) {
+		this.createDateFrom = createDateFrom;
+	}
+
+	@javax.persistence.Transient
+	public Date getCreateDateTo() {
+		return createDateTo;
+	}
+
+	public void setCreateDateTo(Date createDateTo) {
+		this.createDateTo = createDateTo;
+	}
+
+	
 	
 }

@@ -17,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.zy.common.entity.BaseEntity;
 import com.zy.member.entity.Member;
 /**
- * 投票主题帖子
+ * 投票主回复
  * @author Jeff Xu
  *
  */
@@ -37,7 +37,8 @@ public class VoteTopicPost extends BaseEntity{
 	private String ipAddress;//评论人IP
 	private Integer praiseCount;//点赞总数
 	private Integer reportCount;//举报总数
-	
+	private String[] ids;
+	private Integer deleteFlag;
 	
 	//以下字段用于查询
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -117,6 +118,24 @@ public class VoteTopicPost extends BaseEntity{
 
 	public void setCreateDateTo(Date createDateTo) {
 		this.createDateTo = createDateTo;
+	}
+
+	@javax.persistence.Transient
+	public String[] getIds() {
+		return ids;
+	}
+
+	public void setIds(String[] ids) {
+		this.ids = ids;
+	}
+
+	@javax.persistence.Transient
+	public Integer getDeleteFlag() {
+		return deleteFlag;
+	}
+
+	public void setDeleteFlag(Integer deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
 	
 	
