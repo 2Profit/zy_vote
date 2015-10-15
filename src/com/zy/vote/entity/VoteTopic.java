@@ -56,6 +56,7 @@ public class VoteTopic extends BaseEntity{
 	private String[] optionContent;					//选项内容
 	private VoteTopicPost mostPraisePost1; 			//最多人点赞帖子
 	private VoteTopicPost mostPraisePost2;			//最多人点赞帖子
+	private Boolean isVoteTime;						//根据startDate，endDate判断是否可以投票
 	
 	@javax.persistence.Transient
 	public Integer getImageHeight() {
@@ -92,9 +93,13 @@ public class VoteTopic extends BaseEntity{
 	public void setMostPraisePost2(VoteTopicPost mostPraisePost2) {
 		this.mostPraisePost2 = mostPraisePost2;
 	}
-	
-	
-	
+	@javax.persistence.Transient
+	public Boolean getIsVoteTime() {
+		return isVoteTime;
+	}
+	public void setIsVoteTime(Boolean isVoteTime) {
+		this.isVoteTime = isVoteTime;
+	}
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "voteTopic")
 	@OrderBy("id")

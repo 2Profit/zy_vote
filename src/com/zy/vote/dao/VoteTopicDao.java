@@ -19,9 +19,9 @@ public interface VoteTopicDao extends VoteTopicCustomDao,CommonDao<VoteTopic,Str
 	@Query(" from VoteTopic l where l.startDate >= now() and l.deleteFlag !=1 order by l.startDate asc ")
 	List<VoteTopic> getNextTopic();
 	
-	@Query(" count(1) from VoteTopic l where l.deleteFlag !=1 and l.endDate >= ?1 ")
+	@Query("select count(1) from VoteTopic l where l.deleteFlag !=1 and l.endDate >= ?1 ")
 	int findTopicByStartDate(Date startDate);
 	
-	@Query(" count(1) from VoteTopic l where l.deleteFlag !=1 and l.startDate <= ?1 ")
+	@Query("select count(1) from VoteTopic l where l.deleteFlag !=1 and l.startDate <= ?1 ")
 	int findTopicByEndDate(Date startDate);
 }

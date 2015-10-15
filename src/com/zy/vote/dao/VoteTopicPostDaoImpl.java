@@ -26,7 +26,7 @@ public class VoteTopicPostDaoImpl extends CustomBaseSqlDaoImpl implements VoteTo
 		Map<String,Object> params = new HashMap<String,Object>();
 		
 		if(StringUtils.isNoneBlank(topicId)){
-			hql.append(" and l.voteTopic.id =: topicId ");
+			hql.append(" and l.voteTopic.id = :topicId ");
 			params.put("topicId", topicId);
 		}
 		

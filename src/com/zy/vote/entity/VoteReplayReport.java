@@ -1,8 +1,10 @@
 package com.zy.vote.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.zy.common.entity.BaseEntity;
 import com.zy.member.entity.Member;
@@ -15,6 +17,8 @@ import com.zy.member.entity.Member;
  *
  */
 
+@Entity
+@Table(name = "vote_replay_report")
 public class VoteReplayReport extends BaseEntity{
 
 	private static final long serialVersionUID = 5561070080159443950L;

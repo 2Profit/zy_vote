@@ -35,8 +35,8 @@ public class VoteTopicPost extends BaseEntity{
 	private Member publisher;
 	private String postContent;//评论内容
 	private String ipAddress;//评论人IP
-	private Integer praiseCount = 0;//点赞总数
-	private Integer reportCount = 0;//举报总数
+	private Integer praiseCount;//点赞总数
+	private Integer reportCount;//举报总数
 	private Integer deleteFlag;
 	private Integer floorNumb;	//针对同一个topic的回帖排序
 	

@@ -11,4 +11,7 @@ public interface VoteTopicPostDao extends VoteTopicPostCustomDao,CommonDao<VoteT
 	
 	@Query(" from VoteTopicPost p where p.deleteFlag !=1 and p.voteTopic.id = ?1 and p.publisher.id = ?2 ")
 	List<VoteTopicPost> findMemberPost(String topicId, String memberId);
+	
+	@Query("select count(1) from VoteTopicPost p where p.deleteFlag !=1 and p.voteTopic.id = ?1 ")
+	int countMaxFloorNumb(String topicId);
 }

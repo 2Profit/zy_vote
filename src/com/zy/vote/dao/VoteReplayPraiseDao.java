@@ -7,6 +7,6 @@ import com.zy.vote.entity.VoteReplayPraise;
 
 public interface VoteReplayPraiseDao extends CommonDao<VoteReplayPraise, String>{
 
-	@Query(" count(1) from VoteReplayPraise p where p.voteTopicPostReplay.id =?1 and p.member.id = ?2 ")
+	@Query("select count(1) from VoteReplayPraise p where p.voteTopicPostReplay.id =?1 and p.member.id = ?2 ")
 	public int findMemberPraise(String replayId, String memberId);
 }

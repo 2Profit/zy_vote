@@ -38,4 +38,8 @@ public class VoteTopicPostService extends CommonService<VoteTopicPost,String>{
 	public List<VoteTopicPost> findMemberPost(String topicId, String memberId){
 		return voteTopicPostDao.findMemberPost(topicId, memberId);
 	}
+	
+	public int countMaxFloorNumb(String topicId){
+		return voteTopicPostDao.countMaxFloorNumb(topicId);
+	}
 }
