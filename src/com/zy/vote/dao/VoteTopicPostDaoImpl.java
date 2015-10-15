@@ -2,6 +2,7 @@ package com.zy.vote.dao;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -16,6 +17,23 @@ public class VoteTopicPostDaoImpl extends CustomBaseSqlDaoImpl implements VoteTo
 
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<VoteTopicPost> queryMostPraisePost(String topicId) {
+		
+		StringBuilder hql = new StringBuilder("select l from VoteTopicPost l where 1=1 ");
+		Map<String,Object> params = new HashMap<String,Object>();
+		
+		if(StringUtils.isNoneBlank(topicId)){
+			hql.append(" and l.voteTopic.id =: topicId ");
+			params.put("topicId", topicId);
+		}
+		
+		hql.append(" order by l.praiseCount desc ");
+		
+		return this.queryForPageWithParams(hql.toString(),params,1,2).getList();
+	}
 	
 	@Override
 	@SuppressWarnings("unchecked")
@@ -66,6 +84,8 @@ public class VoteTopicPostDaoImpl extends CustomBaseSqlDaoImpl implements VoteTo
 		params.put("ids", Arrays.asList(ids));
 		namedParameterJdbcTemplate.update("update vote_topic_post set delete_flag = :isDelete, update_date = now() where id in (:ids) ", params);
 	}
+
+
 
 
 }

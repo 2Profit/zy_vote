@@ -3,6 +3,7 @@ package com.zy.vote.service;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,30 +31,49 @@ public class VoteTopicService extends CommonService<VoteTopic,String>{
 		return voteTopicDao.queryForPage(queryDto);
 	}
 	
-	public List<VoteTopic> getTopicBySchedule(String schedule){
-		return voteTopicDao.getTopicBySchedule(schedule);
+	public int findTopicByStartDate(Date startDate){
+		return voteTopicDao.findTopicByEndDate(startDate);
 	}
 	
-	public List<VoteTopic> getIndexTopic(){
-		VoteTopicDto queryDto = new VoteTopicDto();
-		queryDto.setSchedule(VoteTopic.SCHEDULE_NEXT);
-		queryDto.setPageSize(3);
-		return voteTopicDao.queryForPage(queryDto).getList();
+	public int findTopicByEndDate(Date startDate){
+		return voteTopicDao.findTopicByEndDate(startDate);
 	}
 	
+	/**
+	 * 当前投票主题
+	 * 为保证页面排版不乱，一定有投票主题返回
+	 * @return
+	 */
 	public VoteTopic getCurrentTopic(){
-		VoteTopicDto queryDto = new VoteTopicDto();
-		queryDto.setSchedule(VoteTopic.SCHEDULE_CURRENT);
-		queryDto.setPageSize(1);
-		queryDto.setStartDateEnd(new Date());
-		queryDto.setToDateBegin(new Date());
-		PageModel<VoteTopic> pageModel = voteTopicDao.queryForPage(queryDto);
-		if(pageModel != null && pageModel.getList() != null && !pageModel.getList().isEmpty()){
-			return pageModel.getList().get(0);
+		List<VoteTopic> topics = voteTopicDao.getCurrentTopic();
+		if(CollectionUtils.isNotEmpty(topics)){
+			return topics.get(0);
+		}else{
+			return voteTopicDao.getOrderedTopic().get(0);
 		}
-		return null;
 	}
 	
+	/**
+	 * 下期投票主题
+	 * 为保证页面排版不乱，一定有投票主题返回
+	 * @return
+	 */
+	public VoteTopic getNextTopic(){
+		List<VoteTopic> topics = voteTopicDao.getNextTopic();
+		if(CollectionUtils.isNotEmpty(topics)){
+			return topics.get(0);
+		}else{
+			return voteTopicDao.getOrderedTopic().get(0);
+		}
+	}
+	
+	/**
+	 * 更多投票
+	 * @return
+	 */
+	public List<VoteTopic> getHistoryTopics(){
+		return voteTopicDao.getOrderedTopic();
+	}
 	
 	public void updateDeleteFlag(String[] ids,Integer isDelete){
 		voteTopicDao.updateDeleteFlag(ids, isDelete);

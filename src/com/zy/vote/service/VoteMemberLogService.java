@@ -29,4 +29,8 @@ public class VoteMemberLogService extends CommonService<VoteMemberLog,String>{
 		return voteMemberLogDao.findMemberTopicLog(memberId, topicId);
 	}
 	
+	public int findTopicLogByIp(String topicId, String ipAddress){
+		return voteMemberLogDao.findTopicLogByIp(topicId, ipAddress);
+	}
+	
 }

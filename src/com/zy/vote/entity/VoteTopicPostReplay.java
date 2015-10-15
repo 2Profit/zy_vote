@@ -32,6 +32,8 @@ public class VoteTopicPostReplay extends BaseEntity{
 	private Member replayer;
 	private String replayContent;//回复内容
 	private String ipAddress;//评论人IP
+	private Integer praiseCount = 0;//点赞总数
+	private Integer reportCount = 0;//举报总数
 	
 	
 	//以下字段用于查询
@@ -39,6 +41,26 @@ public class VoteTopicPostReplay extends BaseEntity{
 	private Date createDateFrom;//评论时间开始
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date createDateTo;//评论时间截止
+	@javax.persistence.Transient
+	public Date getCreateDateFrom() {
+		return createDateFrom;
+	}
+
+	public void setCreateDateFrom(Date createDateFrom) {
+		this.createDateFrom = createDateFrom;
+	}
+
+	@javax.persistence.Transient
+	public Date getCreateDateTo() {
+		return createDateTo;
+	}
+
+	public void setCreateDateTo(Date createDateTo) {
+		this.createDateTo = createDateTo;
+	}
+	
+	
+	
 
 	@ManyToOne
 	@JoinColumn(name="vote_topic_id")
@@ -88,24 +110,18 @@ public class VoteTopicPostReplay extends BaseEntity{
 		this.ipAddress = ipAddress;
 	}
 
-	@javax.persistence.Transient
-	public Date getCreateDateFrom() {
-		return createDateFrom;
+	public Integer getPraiseCount() {
+		return praiseCount;
 	}
-
-	public void setCreateDateFrom(Date createDateFrom) {
-		this.createDateFrom = createDateFrom;
+	public void setPraiseCount(Integer praiseCount) {
+		this.praiseCount = praiseCount;
 	}
-
-	@javax.persistence.Transient
-	public Date getCreateDateTo() {
-		return createDateTo;
+	public Integer getReportCount() {
+		return reportCount;
 	}
-
-	public void setCreateDateTo(Date createDateTo) {
-		this.createDateTo = createDateTo;
+	public void setReportCount(Integer reportCount) {
+		this.reportCount = reportCount;
 	}
-	
 	
 	
 }

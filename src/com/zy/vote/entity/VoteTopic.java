@@ -28,28 +28,72 @@ public class VoteTopic extends BaseEntity{
 	
 	public static final String SCHEDULE_DEFAULT = "0";
 	public static final String SCHEDULE_CURRENT = "1";//当前期
-	public static final String SCHEDULE_NEXT = "2";// 下期
+	public static final String SCHEDULE_NEXT = "2";	// 下期
 
 	
-	private List<VoteTopicOption> options;//主题投票选项
-	private List<VoteTopicPost> posts;//投票评论
+	private List<VoteTopicOption> options;			//主题投票选项
+	private List<VoteTopicPost> posts;				//投票评论
 	
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	private Date startDate;//开始日期
+	private Date startDate;							//开始日期
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	private Date endDate;//结束日期
-	private String titleContent;//题目内容
-	private Boolean isComment;//是否开启评论功能（1-开启，0-关闭）
-	private String displayPosition;//显示位置（0-用户中心，1-网页，2-用户中心+网页）
-	private String displayType;//显示模式(0-百分比，1-实数)
-	private String schedule;//排期（0-初始值，1-当前期，2-下期）
-	private Integer voteCount = 0;//总投票数
-	private String imageUrl; //主题图，保存相对路径
-	private Integer imageHeight;//主题图片高
-	private Integer imageWidth;//主题图片宽
+	private Date endDate;							//结束日期
+	private String titleContent;					//题目内容
+	private Boolean isComment;						//是否开启评论功能（1-开启，0-关闭）
+	private String displayPosition;					//显示位置（0-用户中心，1-网页，2-用户中心+网页）
+	private String displayType;						//显示模式(0-百分比，1-实数)
+	private String schedule;						//排期（0-初始值，1-当前期，2-下期）
+	private Integer voteCount = 0;					//总投票数
+	private Integer postCount;						//总跟帖数量
+	private String imageUrl; 						//主题图，保存相对路径
 	
-	private String[] optionContent;//选项内容
+	
+	
+	//用于页面显示或查询
+	private Integer imageHeight;					//主题图片高
+	private Integer imageWidth;						//主题图片宽
+	private String[] optionContent;					//选项内容
+	private VoteTopicPost mostPraisePost1; 			//最多人点赞帖子
+	private VoteTopicPost mostPraisePost2;			//最多人点赞帖子
+	
+	@javax.persistence.Transient
+	public Integer getImageHeight() {
+		return imageHeight;
+	}
+	public void setImageHeight(Integer imageHeight) {
+		this.imageHeight = imageHeight;
+	}
+	@javax.persistence.Transient
+	public Integer getImageWidth() {
+		return imageWidth;
+	}
+	public void setImageWidth(Integer imageWidth) {
+		this.imageWidth = imageWidth;
+	}
+	@javax.persistence.Transient
+	public String[] getOptionContent() {
+		return optionContent;
+	}
+	public void setOptionContent(String[] optionContent) {
+		this.optionContent = optionContent;
+	}
+	@javax.persistence.Transient
+	public VoteTopicPost getMostPraisePost1() {
+		return mostPraisePost1;
+	}
+	public void setMostPraisePost1(VoteTopicPost mostPraisePost1) {
+		this.mostPraisePost1 = mostPraisePost1;
+	}
+	@javax.persistence.Transient
+	public VoteTopicPost getMostPraisePost2() {
+		return mostPraisePost2;
+	}
+	public void setMostPraisePost2(VoteTopicPost mostPraisePost2) {
+		this.mostPraisePost2 = mostPraisePost2;
+	}
+	
+	
 	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "voteTopic")
@@ -128,27 +172,14 @@ public class VoteTopic extends BaseEntity{
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	@javax.persistence.Transient
-	public Integer getImageHeight() {
-		return imageHeight;
+	public Integer getPostCount() {
+		return postCount;
 	}
-	public void setImageHeight(Integer imageHeight) {
-		this.imageHeight = imageHeight;
+	public void setPostCount(Integer postCount) {
+		this.postCount = postCount;
 	}
-	@javax.persistence.Transient
-	public Integer getImageWidth() {
-		return imageWidth;
-	}
-	public void setImageWidth(Integer imageWidth) {
-		this.imageWidth = imageWidth;
-	}
-	@javax.persistence.Transient
-	public String[] getOptionContent() {
-		return optionContent;
-	}
-	public void setOptionContent(String[] optionContent) {
-		this.optionContent = optionContent;
-	}
+
+
 	
 	
 }

@@ -9,4 +9,7 @@ public interface VoteMemberLogDao extends VoteMemberLogCustomDao,CommonDao<VoteM
 
 	@Query(" select count(1) from VoteMemberLog l where l.member.id = ?1 and l.voteTopic.id = ?2")
 	public int findMemberTopicLog(String memberId, String topicId);
+	
+	@Query(" select count(1) from VoteMemberLog l where l.voteTopic.id = ?1 and l.ipAddress = ?2")
+	public int findTopicLogByIp(String topicId, String ipAddress);
 }

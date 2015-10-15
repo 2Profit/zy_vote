@@ -35,16 +35,55 @@ public class VoteTopicPost extends BaseEntity{
 	private Member publisher;
 	private String postContent;//评论内容
 	private String ipAddress;//评论人IP
-	private Integer praiseCount;//点赞总数
-	private Integer reportCount;//举报总数
-	private String[] ids;
+	private Integer praiseCount = 0;//点赞总数
+	private Integer reportCount = 0;//举报总数
 	private Integer deleteFlag;
+	private Integer floorNumb;	//针对同一个topic的回帖排序
+	
 	
 	//以下字段用于查询
+	private String[] ids;
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date createDateFrom;//评论时间开始
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date createDateTo;//评论时间截止
+	@javax.persistence.Transient
+	public Date getCreateDateFrom() {
+		return createDateFrom;
+	}
+
+	public void setCreateDateFrom(Date createDateFrom) {
+		this.createDateFrom = createDateFrom;
+	}
+	@javax.persistence.Transient
+	public Date getCreateDateTo() {
+		return createDateTo;
+	}
+
+	public void setCreateDateTo(Date createDateTo) {
+		this.createDateTo = createDateTo;
+	}
+
+	@javax.persistence.Transient
+	public String[] getIds() {
+		return ids;
+	}
+
+	public void setIds(String[] ids) {
+		this.ids = ids;
+	}
+
+	@javax.persistence.Transient
+	public Integer getDeleteFlag() {
+		return deleteFlag;
+	}
+
+	public void setDeleteFlag(Integer deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
+	
+	
+	
 	
 	@ManyToOne
 	@JoinColumn(name="vote_topic_id")
@@ -99,44 +138,19 @@ public class VoteTopicPost extends BaseEntity{
 	public void setReportCount(Integer reportCount) {
 		this.reportCount = reportCount;
 	}
+
+	public Integer getFloorNumb() {
+		return floorNumb;
+	}
+
+	public void setFloorNumb(Integer floorNumb) {
+		this.floorNumb = floorNumb;
+	}
 	
 	
 	
 
-	@javax.persistence.Transient
-	public Date getCreateDateFrom() {
-		return createDateFrom;
-	}
-
-	public void setCreateDateFrom(Date createDateFrom) {
-		this.createDateFrom = createDateFrom;
-	}
-	@javax.persistence.Transient
-	public Date getCreateDateTo() {
-		return createDateTo;
-	}
-
-	public void setCreateDateTo(Date createDateTo) {
-		this.createDateTo = createDateTo;
-	}
-
-	@javax.persistence.Transient
-	public String[] getIds() {
-		return ids;
-	}
-
-	public void setIds(String[] ids) {
-		this.ids = ids;
-	}
-
-	@javax.persistence.Transient
-	public Integer getDeleteFlag() {
-		return deleteFlag;
-	}
-
-	public void setDeleteFlag(Integer deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}
+	
 	
 	
 	

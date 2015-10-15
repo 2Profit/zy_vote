@@ -1,5 +1,7 @@
 package com.zy.vote.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,4 +31,11 @@ public class VoteTopicPostService extends CommonService<VoteTopicPost,String>{
 		voteTopicPostDao.updateDeleteFlag(ids, isDelete);
 	}
 
+	public List<VoteTopicPost> queryMostPraisePost(String topicId){
+		return voteTopicPostDao.queryMostPraisePost(topicId);
+	}
+	
+	public List<VoteTopicPost> findMemberPost(String topicId, String memberId){
+		return voteTopicPostDao.findMemberPost(topicId, memberId);
+	}
 }
