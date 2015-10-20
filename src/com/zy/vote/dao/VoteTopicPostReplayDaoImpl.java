@@ -63,6 +63,8 @@ public class VoteTopicPostReplayDaoImpl extends CustomBaseSqlDaoImpl implements 
 	public void deleteById(String[] ids){
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("ids", Arrays.asList(ids));
+		namedParameterJdbcTemplate.update(" delete from vote_replay_praise where vote_post_replay_id in (:ids) ", params);
+		namedParameterJdbcTemplate.update(" delete from vote_replay_report where vote_post_replay_id in (:ids) ", params);
 		namedParameterJdbcTemplate.update(" delete from vote_topic_post_replay where id in (:ids) ", params);
 	}
 

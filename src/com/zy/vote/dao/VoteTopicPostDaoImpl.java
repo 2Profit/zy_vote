@@ -59,6 +59,9 @@ public class VoteTopicPostDaoImpl extends CustomBaseSqlDaoImpl implements VoteTo
 		sb.append("		left join mem_member m2 on m2.id = r.replayer_id ");
 		sb.append("		left join mem_user u2 on u2.id = m2.id ) as tmp where 1=1 ");
 		
+		if(StringUtils.isNotBlank(queryDto.getPostId())){
+			sb.append(" and tmp.post_id = '").append(queryDto.getPostId()).append("' ");
+		}
 		if(StringUtils.isNotBlank(queryDto.getTitleContent())){
 			sb.append(" and tmp.title_content like '%").append(queryDto.getTitleContent()).append("%' ");
 		}
@@ -80,6 +83,8 @@ public class VoteTopicPostDaoImpl extends CustomBaseSqlDaoImpl implements VoteTo
 		if(queryDto.getCreateDateTo()!=null){
 			sb.append(" and tmp.create_date <= ").append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(queryDto.getCreateDateTo()));
 		}
+		
+		sb.append("  order by tmp.create_date desc ");
 		
 		int currentPage = pageModal.getCurrentPage();
 		int pageSize = pageModal.getPageSize();
