@@ -47,6 +47,8 @@ public class VoteTopicPost extends BaseEntity{
 	private Date createDateFrom;//评论时间开始
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date createDateTo;//评论时间截止
+	private String orderByParam;//排序字段
+	
 	@javax.persistence.Transient
 	public Date getCreateDateFrom() {
 		return createDateFrom;
@@ -81,10 +83,15 @@ public class VoteTopicPost extends BaseEntity{
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
-	
-	
-	
-	
+	@javax.persistence.Transient
+	public String getOrderByParam() {
+		return orderByParam;
+	}
+
+	public void setOrderByParam(String orderByParam) {
+		this.orderByParam = orderByParam;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="vote_topic_id")
 	public VoteTopic getVoteTopic() {

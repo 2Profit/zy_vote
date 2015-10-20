@@ -63,9 +63,9 @@ public class VoteTopicDaoImpl extends CustomBaseSqlDaoImpl implements VoteTopicC
 			params.put("toDateEnd", queryDto.getToDateEnd());
 		}
 		
-		if(StringUtils.isNotBlank(queryDto.getSchedule())){
-			hql.append(" and l.schedule = :schedule ");
-			params.put("schedule", queryDto.getSchedule());
+		if(queryDto.getDeleteFlag()!=null){
+			hql.append(" and l.deleteFlag = :deleteFlag ");
+			params.put("deleteFlag", queryDto.getDeleteFlag());
 		}
 		
 		hql.append(" order by l.updateDate desc ");

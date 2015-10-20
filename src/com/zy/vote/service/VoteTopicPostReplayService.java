@@ -29,4 +29,8 @@ public class VoteTopicPostReplayService extends CommonService<VoteTopicPostRepla
 	public List<VoteTopicPostReplay> getByTopicId(String topicId){
 		return voteTopicPostReplayDao.getByTopicId(topicId);
 	}
+	
+	public void deleteById(String[] ids){
+		voteTopicPostReplayDao.deleteById(ids);
+	}
 }

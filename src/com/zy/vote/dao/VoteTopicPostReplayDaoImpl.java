@@ -1,9 +1,12 @@
 package com.zy.vote.dao;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.zy.common.dao.CustomBaseSqlDaoImpl;
 import com.zy.common.entity.PageModel;
@@ -11,6 +14,9 @@ import com.zy.vote.entity.VoteTopicPostReplay;
 
 public class VoteTopicPostReplayDaoImpl extends CustomBaseSqlDaoImpl implements VoteTopicPostReplayCustomDao{
 
+	@Autowired
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public PageModel<VoteTopicPostReplay> queryForPage(
@@ -51,6 +57,13 @@ public class VoteTopicPostReplayDaoImpl extends CustomBaseSqlDaoImpl implements 
 		hql.append(" order by l.updateDate desc ");
 		
 		return this.queryForPageWithParams(hql.toString(),params,pageModel.getCurrentPage(), pageModel.getPageSize());
+	}
+	
+	@Override
+	public void deleteById(String[] ids){
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("ids", Arrays.asList(ids));
+		namedParameterJdbcTemplate.update(" delete from vote_topic_post_replay where id in (:ids) ", params);
 	}
 
 }
