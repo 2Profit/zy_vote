@@ -11,6 +11,13 @@ public class VoteTopicDto extends PageModel<VoteTopic>{
 
 	private static final long serialVersionUID = 5134167590120542266L;
 	
+	public static final String RESULT_CODE_VOTE_ERROR = "401";//用户对投票重复投票
+	public static final String RESULT_CODE_PRAISE_ERROR = "402";//用户对帖子重复点赞
+	public static final String RESULT_CODE_REPORT_ERROR = "403";//用户对帖子重复举报
+	public static final String RESULT_CODE_RANDOMCODE_ERROR = "404";//验证码错误
+	public static final String RESULT_CODE_LOGIN_ERROR = "405";//用户未登录错误
+	public static final String RESULT_CODE_VOTE_PERMIT_ERROR = "406";//投票未开启评论错误
+	
 	private String id;//主键
 	private String optionId;//主题投票选项
 	private Date startDate;//开始日期
