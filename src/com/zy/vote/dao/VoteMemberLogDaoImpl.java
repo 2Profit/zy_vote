@@ -30,9 +30,9 @@ public class VoteMemberLogDaoImpl extends CustomBaseSqlDaoImpl implements VoteMe
 			params.put("voteTopicId", queryDto.getVoteTopic().getId());
 		}
 		
-		if(queryDto.getMember()!=null && StringUtils.isNotBlank(queryDto.getMember().getUserName())){
-			hql.append(" and l.member.userName like :userName ");
-			params.put("userName", "%"+queryDto.getMember().getUserName()+"%");
+		if(queryDto.getMember()!=null && StringUtils.isNotBlank(queryDto.getMember().getMobile())){
+			hql.append(" and l.member.mobile like :mobile ");
+			params.put("mobile", "%"+queryDto.getMember().getMobile()+"%");
 		}
 		
 		if(queryDto.getCreateDateFrom()!=null){

@@ -35,8 +35,8 @@ public class VoteTopicService extends CommonService<VoteTopic,String>{
 		return voteTopicDao.findTopicByEndDate(startDate);
 	}
 	
-	public int findTopicByEndDate(Date startDate){
-		return voteTopicDao.findTopicByEndDate(startDate);
+	public int findTopicByEndDate(Date endDate){
+		return voteTopicDao.findTopicByEndDate(endDate);
 	}
 	
 	/**
